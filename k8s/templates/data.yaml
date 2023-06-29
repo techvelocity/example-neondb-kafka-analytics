@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: List
+items:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: data-service
+      labels:
+        api: data-service
+    spec:
+      selector:
+        matchLabels:
+          api: data-service
+      replicas: 1
+      template:
+        metadata:
+          labels:
+            api: data-service
+        spec:
+          containers:
+            - name: data-service
+              image: {{ .Values.dataService.containers.image | quote }}
+              env:
+                - name: KAFKA_HOST
+                  value: {{ .Values.dataService.envVars.KAFKA_HOST | quote }}
+              ports:
+                - name: data-service
+                  containerPort: 8000
+                  protocol: TCP

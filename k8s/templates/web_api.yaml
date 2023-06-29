@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-api
+  labels:
+    app: web-api
+spec:
+  selector:
+    matchLabels:
+      app: web-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: web-api
+    spec:
+      containers:
+        - name: web-api
+          image: {{ .Values.webAPI.containers.image | quote }}
+          env:
+            - name: POSTGRES_HOST
+              value: {{ .Values.webAPI.envVars.POSTGRES_HOST | quote  }}
+            - name: POSTGRES_USER
+              value: {{ .Values.webAPI.envVars.POSTGRES_USER | quote  }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.webAPI.envVars.POSTGRES_PASSWORD | quote  }}
+            - name: POSTGRES_DB
+              value: {{ .Values.webAPI.envVars.POSTGRES_DB | quote  }}
+          ports:
+            - name: web-api
+              containerPort: 8000
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-api
+spec:
+  ports:
+    - port: 8000
+      targetPort: 8000
+      name: web-api
+  selector:
+    app: web-api
+  type: ClusterIP

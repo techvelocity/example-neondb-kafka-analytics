@@ -1,0 +1,38 @@
+frontend:
+  containers:
+    image: jdvincent/neondb-kafka-frontend:latest
+
+  envVars:
+    BASE_URL: "http://localhost/"
+
+  ingress:
+    ingressClassName: kong
+    host: null
+
+webAPI:
+  containers:
+    image: jdvincent/neondb-kafka-web-api:latest
+
+  envVars:
+    POSTGRES_USER: jeff-vincent
+    POSTGRES_PASSWORD: KUPoO7q3jsvY
+    POSTGRES_HOST: ep-lucky-cake-429261.us-west-2.aws.neon.tech
+    POSTGRES_DB: analytics
+
+dataService:
+  containers:
+    image: jdvincent/neondb-kafka-data:latest
+
+  envVars:
+    KAFKA_HOST: my-kafka
+
+worker:
+  containers:
+    image: jdvincent/neondb-kafka-worker:latest
+
+  envVars:
+    POSTGRES_USER: jeff-vincent
+    POSTGRES_PASSWORD: KUPoO7q3jsvY
+    POSTGRES_HOST: ep-lucky-cake-429261.us-west-2.aws.neon.tech
+    POSTGRES_DB: analytics
+    KAFKA_HOST: my-kafka-headless
