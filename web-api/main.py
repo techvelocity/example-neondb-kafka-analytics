@@ -29,11 +29,11 @@ def get_analytics_data(event_type: str, start_date: str = None, end_date: str = 
     return results
 
 
-@app.get("/click-analytics")
+@app.get("/api/click-analytics")
 def get_click_analytics(start_date: str = None, end_date: str = None):
     return get_analytics_data("click", start_date, end_date)
 
 
-@app.get("/view-analytics")
+@app.get("/api/view-analytics")
 def get_view_analytics(start_date: str = None, end_date: str = None):
     return get_analytics_data("view", start_date, end_date)

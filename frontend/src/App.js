@@ -1,9 +1,9 @@
 import './App.css';
-import Dashboard from "./components/dashboard";
+import EventGraph from "./components/eventGraph";
 function App() {
   return (
     <div className="App">
-    <Dashboard/>
+    <EventGraph/>
     </div>
   );
 }

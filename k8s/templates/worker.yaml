@@ -19,12 +19,15 @@ spec:
         - name: worker
           image: {{ .Values.worker.containers.image | quote }}
           env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: neondb-credentials
+                  key: password
             - name: POSTGRES_HOST
               value: {{ .Values.worker.envVars.POSTGRES_HOST | quote  }}
             - name: POSTGRES_USER
               value: {{ .Values.worker.envVars.POSTGRES_USER | quote  }}
-            - name: POSTGRES_PASSWORD
-              value: {{ .Values.worker.envVars.POSTGRES_PASSWORD | quote  }}
             - name: POSTGRES_DB
               value: {{ .Values.worker.envVars.POSTGRES_DB | quote  }}
             - name: KAFKA_HOST

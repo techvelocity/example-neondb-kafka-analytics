@@ -44,23 +44,25 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: frontend
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
 spec:
-  ingressClassName: {{ .Values.frontend.ingress.ingressClassName | quote }}
+  tls:
+  - secretName: tls-secret
   rules:
-    - host: null
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: frontend
-                port:
-                  number: 80
-          - path: /api
-            pathType: Prefix
-            backend:
-              service:
-                name: web-api
-                port:
-                  number: 8000
+  - http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: frontend
+              port:
+                number: 80
+        - path: /api
+          pathType: Prefix
+          backend:
+            service:
+              name: web-api
+              port:
+                number: 8000

@@ -19,12 +19,15 @@ spec:
         - name: web-api
           image: {{ .Values.webAPI.containers.image | quote }}
           env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: neondb-credentials
+                  key: password
             - name: POSTGRES_HOST
               value: {{ .Values.webAPI.envVars.POSTGRES_HOST | quote  }}
             - name: POSTGRES_USER
               value: {{ .Values.webAPI.envVars.POSTGRES_USER | quote  }}
-            - name: POSTGRES_PASSWORD
-              value: {{ .Values.webAPI.envVars.POSTGRES_PASSWORD | quote  }}
             - name: POSTGRES_DB
               value: {{ .Values.webAPI.envVars.POSTGRES_DB | quote  }}
           ports:

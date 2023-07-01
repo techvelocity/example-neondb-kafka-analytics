@@ -8,3 +8,9 @@ configurations:
     build:
       dockerfile-path: "./web-api/Dockerfile"
       build-context-path: "./web-api"
+  python-Run With Velocity2:
+    name: "Run With Velocity2"
+    language: "python"
+    build:
+      dockerfile-path: "./web-api/Dockerfile"
+      build-context-path: "./web-api"

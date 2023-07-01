@@ -52,7 +52,7 @@ def run():
         producer.flush()
 
         # Sleep for a certain duration to control the data flow rate
-        time.sleep(1)  # Adjust the sleep duration as needed
+        time.sleep(10)  # Adjust the sleep duration as needed
 
 
 if __name__ == '__main__':

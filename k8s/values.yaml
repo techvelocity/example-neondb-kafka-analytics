@@ -15,7 +15,6 @@ webAPI:
 
   envVars:
     POSTGRES_USER: jeff-vincent
-    POSTGRES_PASSWORD: KUPoO7q3jsvY
     POSTGRES_HOST: ep-lucky-cake-429261.us-west-2.aws.neon.tech
     POSTGRES_DB: analytics
 
@@ -32,7 +31,6 @@ worker:
 
   envVars:
     POSTGRES_USER: jeff-vincent
-    POSTGRES_PASSWORD: KUPoO7q3jsvY
     POSTGRES_HOST: ep-lucky-cake-429261.us-west-2.aws.neon.tech
     POSTGRES_DB: analytics
     KAFKA_HOST: my-kafka-headless
