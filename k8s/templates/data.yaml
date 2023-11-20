@@ -20,6 +20,7 @@ items:
           containers:
             - name: data-service
               image: {{ .Values.dataService.containers.image | quote }}
+              imagePullPolicy: IfNotPresent
               env:
                 - name: KAFKA_HOST
                   value: {{ .Values.dataService.envVars.KAFKA_HOST | quote }}

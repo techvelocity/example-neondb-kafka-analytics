@@ -18,6 +18,7 @@ spec:
       containers:
         - name: worker
           image: {{ .Values.worker.containers.image | quote }}
+          imagePullPolicy: IfNotPresent
           env:
             - name: POSTGRES_PASSWORD
               valueFrom:

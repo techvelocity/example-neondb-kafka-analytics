@@ -18,6 +18,7 @@ spec:
       containers:
         - name: web-api
           image: {{ .Values.webAPI.containers.image | quote }}
+          imagePullPolicy: IfNotPresent
           env:
             - name: POSTGRES_PASSWORD
               valueFrom:

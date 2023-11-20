@@ -18,7 +18,7 @@ spec:
       containers:
         - name: frontend
           image: {{ .Values.frontend.containers.image | quote }}
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: BASE_URL
               value: {{ .Values.frontend.envVars.BASE_URL}}
@@ -44,11 +44,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: frontend
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
 spec:
-  tls:
-  - secretName: tls-secret
+  ingressClassName: kong
   rules:
   - http:
       paths:

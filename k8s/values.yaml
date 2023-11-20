@@ -1,9 +1,9 @@
 frontend:
   containers:
-    image: jdvincent/neondb-kafka-frontend:latest
+    image: neondb-kafka-frontend:latest
 
   envVars:
-    BASE_URL: "http://localhost/"
+    BASE_URL: localhost
 
   ingress:
     ingressClassName: kong
@@ -11,7 +11,7 @@ frontend:
 
 webAPI:
   containers:
-    image: jdvincent/neondb-kafka-web-api:latest
+    image: neondb-kafka-web-api:latest
 
   envVars:
     POSTGRES_USER: jeff-vincent
@@ -20,14 +20,14 @@ webAPI:
 
 dataService:
   containers:
-    image: jdvincent/neondb-kafka-data:latest
+    image: neondb-kafka-data:latest
 
   envVars:
     KAFKA_HOST: my-kafka
 
 worker:
   containers:
-    image: jdvincent/neondb-kafka-worker:latest
+    image: neondb-kafka-worker:latest
 
   envVars:
     POSTGRES_USER: jeff-vincent
